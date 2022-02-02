@@ -24,7 +24,7 @@ PAYLOAD (json)
        "key": "value" 
 }, 
 "testMode": false, 
-"testVerificationPersonalNr": " XXXXXXXX-XXXX" 
+"testVerificationPersonalNr": "XXXXXXXX-XXXX" 
 } 
 ```
 
