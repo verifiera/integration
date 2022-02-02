@@ -224,6 +224,6 @@ PAYLOAD SCHEMA (json schema)
 }
 ```
 
-##Callback 
+## Callback 
 
 Callback sent as POST request with payload described in Status. Your server must respond with 2xx HTTP code, otherwise our server will make 3 retries with following windows: 1 minute, 1 hour, 1 day. 
