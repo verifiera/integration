@@ -4,7 +4,7 @@ This document is a subject for future changes.
 Check description in json schema.  
 
 ## Init method
-Initializes background check. If success - server responds with 200 HTTP Code
+Initializes a background check. If success - server responds with 200 HTTP Code
 
 **POST /api/integration/init**
 
