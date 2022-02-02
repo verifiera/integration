@@ -1,5 +1,5 @@
 # API Draft
-version: 0.1
+Version: 0.1
 This document is subject for future changes.
 Check json description in json schema. 
 
