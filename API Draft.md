@@ -1,7 +1,7 @@
 # API Draft
-Version: 0.1 
-This document is subject for future changes. 
-Check json description in json schema. 
+Version: 0.1  
+This document is subject for future changes.  
+Check json description in json schema.  
 
 ## Init method
 Initializes background check. If success server respåond with 200 HTTP Code, otherwise JSON from Appendix 2 
