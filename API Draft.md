@@ -162,13 +162,13 @@ ERROR RESPONSE SCHEME (json scheme)
 ## Commit
 After approval request if approved by candidate integrator must Commit request. During commit Verifiera register purchase. This request can be done in callback or additionally by user.
 
-**POST /api/integration/commit**
+**POST /api/integration/commit?request_id=REQUEST_ID**
 
 ## Status
 Status response and callback payload have 100% same format. 
 If callbackUrl is set, Verifiera will test if callback url returns HTTP 200 code for status update with status “test” during Init call.  
 
-**GET /api/integration/status/REQUEST_ID**
+**GET /api/integration/status?request_id=REQUEST_ID**
 
 PAYLOAD (json)
 ```javascript
