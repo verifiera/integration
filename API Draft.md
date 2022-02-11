@@ -15,6 +15,7 @@ PAYLOAD (json)
 "requestId": "any_unique_id",  
 "customerId": "CUSTOMER_id", 
 "customerTitle": "COMPANY NAME",
+"referenceCustomer": "Recruteringsföretag AB",
 "type": "legal_analysis",
 "personalNr": "XXXXXXXX-XXXX", 
 "candidatePhone": "",  
@@ -36,7 +37,7 @@ PAYLOAD SCHEMA (json schema)
   "properties": {  
     "requestId": {  
       "type": "string",
-      "description" : "Unique id generated on caller side. For example UUID. varchar(255)",
+      "description" : "Unique id. Could generated on caller side or on hour side if value is absent.",
       "maxLength": 255
     },  
     "customerId": {  
@@ -47,6 +48,11 @@ PAYLOAD SCHEMA (json schema)
     "customerTitle": {  
       "type": "string",
       "description" : "This value will be shown on approval sent to candidate. Usually it will be company name of customerId.",
+      "maxLength": 255
+    },  
+     "referenceCustomer": {  
+      "type": "string",
+      "description" : "Customer of customer.",
       "maxLength": 255
     },  
     "type": {  
@@ -88,7 +94,6 @@ PAYLOAD SCHEMA (json schema)
   },  
 
   "required": [  
-    "requestId",  
     "customerId",  
     "customerTitle",  
     "type",  
@@ -109,7 +114,6 @@ ERROR RESPONSE (json)
          "data": "FIELD IF validation", 
          "text": {
              "sv": "TEXT IN SWEDISH",
-             "en": "TEXT IN ENGLISH"
          }
       } 
    ] 
@@ -171,7 +175,6 @@ PAYLOAD (json)
     "status": "waiting_recipient_approval|waiting_security_approval| candidate_not_approved | candidate_approved |test", 
     "displayString": { 
  	    "sv" : "STRING TO DISPLAY IN SWEDISH", 
-        "en" : "STRING TO DISPLAY IN ENGLISH", 
     } 
 } 
 ```
