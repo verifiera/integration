@@ -28,7 +28,7 @@ Bad request codes:
 
 Anytime you can get current status (status).
 
- There is following statuses: 
+ There are following statuses: 
  - waiting_recipient_approval
  - ready_to_commit
  - waiting_security_approval
