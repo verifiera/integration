@@ -9,15 +9,15 @@ Check description in json schema.
 
 HTTP code are used to indicate errors
 
-We have following status codes:
+We have following status codes:  
 500 - no json, fatal error  
-403 - Forbidden - you do not have access to this endpoint 401 - Unauthorized - wrong credentials  
-400 - Bad Request - Validation error 
-Bad request codes: 
-	0 - wrong personal_id format    
-	1 - incorrect json  
-	2 - requested item is not approved by recipient (/api/integration/commit)
-500 - non fatal error, wrong use of api, for example API request parameter not exists
+403 - Forbidden - you do not have access to this endpoint 401 - Unauthorized - wrong credentials   
+400 - Bad Request - Validation error   
+Bad request codes:   
+	0 - wrong personal_id format      
+	1 - incorrect json   
+	2 - requested item is not approved by recipient (/api/integration/commit)  
+500 - non fatal error, wrong use of api, for example API request parameter not exists   
 
 ## Background check process description.
 1. Process start (init)
