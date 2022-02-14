@@ -1,10 +1,47 @@
+
 # API Draft
-Version: 0.1  
+Version: 0.3
+ 
 This document is a subject for future changes.  
 Check description in json schema.  
 
+## Errors handling
+
+HTTP code are used to indicate errors
+
+We have following status codes:
+500 - no json, fatal error  
+403 - Forbidden - you do not have access to this endpoint 401 - Unauthorized - wrong credentials  
+400 - Bad Request - Validation error 
+Bad request codes: 
+	0 - wrong personal_id format    
+	1 - incorrect json  
+	2 - requested item is not approved by recipient (/api/integration/commit)
+500 - non fatal error, wrong use of api, for example API request parameter not exists
+
+## Background check process description.
+1. Process start (init)
+2. Candidate approves or denies request (candidate-response [this request if only for dev purposes. no intended to be used in prod]) 
+3. If candidate approved then you need to tell our system to register background check purchase. In our system customer do it implicitly when open report. But we think for your case it should be done automatically, for example during callback. If callback won't work probably it would be nice to have a button in such case so user could purchase report implicitly. (commit)
+4. If person if "green", then everything is fine. But if it is not approved by our system, it goes to security officer. (security-response [only for dev] ) 
+5. When security offices gives response result is ready to be shown
+
+Anytime you can get current ststus (status).
+
+ There is following statuses: 
+ - waiting_recipient_approval
+ - ready_to_commit
+ - waiting_security_approval
+ - candidate_not_approved
+ - candidate_approved
+ - unknown
+ - test  (in future we could check callback address during init call, so this status will come to callback)
+
 ## Init method
 Initializes a background check. If success - server responds with 200 HTTP Code.
+requestId is optional, if you skip it server will generate it for you,
+additionalData currently not saved. Will fix later if needed.
+
 
 **POST /api/integration/init**
 
@@ -107,57 +144,16 @@ PAYLOAD SCHEMA (json schema)
 ERROR RESPONSE (json)
 
 ```javascript
-{ 
-   "errors": [ 
-      { 
-         "type": "validation", 
-         "data": "FIELD IF validation", 
-         "text": {
-             "sv": "TEXT IN SWEDISH",
-         }
-      } 
-   ] 
-} 
-```
-
-ERROR RESPONSE SCHEME (json scheme)
-
-```javascript
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "type": "object",
-  "properties": {
-    "errors": {
-      "type": "array",
-      "items": [
-        {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": ["validation", "general"]
-            },
-            "data": {
-              "type": "string",
-              "description": "Provides additional information. For 'validation' it provides field key."
-            },
-            "text": {
-              "type": "object"
-            }
-          },
-          "required": [
-            "type",           
-            "text"
-          ]
-        }
-      ]
-    }
-  },
-  "required": [
-    "errors"
-  ] 
+"success": false,
+"error": true,
+"name": "Exception",
+"message": "Incorrect personal_id format. Use (XX)XXXXXX-XXXX",
+"code": 0,
+"type": "yii\\base\\UserException"
 }
 ```
+
 
 ## Commit
 After approval request if approved by candidate integrator must Commit request. During commit Verifiera register purchase. This request can be done in callback or additionally by user.
@@ -178,9 +174,7 @@ PAYLOAD (json)
     "statusChangeAt": "2018-11-13T20:20:39+00:00", // date when init was called 
     "candidateResponseAt": "2018-11-13T20:20:39+00:00", // date when candidate responded to approval request 
     "status": "waiting_recipient_approval|waiting_security_approval| candidate_not_approved | candidate_approved |test", 
-    "displayString": { 
- 	    "sv" : "STRING TO DISPLAY IN SWEDISH", 
-    } 
+    "displayString": "String in swedish"
 } 
 ```
 
@@ -207,19 +201,8 @@ PAYLOAD SCHEMA (json schema)
       "enum": ["waiting_recipient_approval","waiting_security_approval","candidate_not_approved","candidate_approved","test"]
     },
     "displayString": {
-      "type": "object",
-      "properties": {
-        "sv": {
-          "type": "string"
-        },
-        "en": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "sv",
-        "en"
-      ]
+      "type": "string" 
+     
     }
   },
   "required": [
@@ -234,4 +217,11 @@ PAYLOAD SCHEMA (json schema)
 
 ## Callback 
 
-Callback sent as POST request with payload described in Status. Your server must respond with 2xx HTTP code, otherwise our server will make 3 retries with following windows: 1 minute, 1 hour, 1 day. 
+Callback sent as POST request with payload described in Status. Your server must respond with 2xx HTTP code, otherwise our server will make 3 retries with following windows: 1 minute, 1 hour, 1 day.
+
+## Development aid
+
+To make development easer there is additional calls to go through process.
+
+/api/integration/candidate-response?request_id=REQUEST_id&answer=(yes|no)
+/api/integration/security-response?request_id=60620a1639d2173&answer=(accept|reject)
