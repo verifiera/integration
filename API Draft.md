@@ -24,7 +24,7 @@ Bad request codes:
 2. Candidate approves or denies request (candidate-response [this request if only for dev purposes. no intended to be used in prod]) 
 3. If candidate approved then you need to tell our system to register background check purchase. In our system customer do it implicitly when open report. But we think for your case it should be done automatically, for example during callback. If callback won't work probably it would be nice to have a button in such case so user could purchase report implicitly. (commit)
 4. If person is "green", then everything is fine. But if it is not approved by our system, it goes to security officer. (security-response [only for dev] ) 
-5. When security offices gives response result is ready to be shown
+5. When security officer gives response result is ready to be shown
 
 Anytime you can get current status (status).
 
