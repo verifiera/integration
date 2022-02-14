@@ -223,5 +223,5 @@ Callback sent as POST request with payload described in Status. Your server must
 
 To make development easer there is additional calls to go through process.
 
-/api/integration/candidate-response?request_id=REQUEST_id&answer=(yes|no)
+/api/integration/candidate-response?request_id=REQUEST_id&answer=(yes|no)  
 /api/integration/security-response?request_id=60620a1639d2173&answer=(accept|reject)
