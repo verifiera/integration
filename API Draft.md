@@ -26,7 +26,7 @@ Bad request codes:
 4. If person if "green", then everything is fine. But if it is not approved by our system, it goes to security officer. (security-response [only for dev] ) 
 5. When security offices gives response result is ready to be shown
 
-Anytime you can get current ststus (status).
+Anytime you can get current status (status).
 
  There is following statuses: 
  - waiting_recipient_approval
