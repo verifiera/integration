@@ -4,7 +4,7 @@ Version: 0.4
 
 ## Changes
 
-**Changes in 0.4**
+**Changes in 0.4**  
 Added status "approval_request_rejected"  
 Added "testCallback" in Init request
  
