@@ -1,10 +1,13 @@
 
 # API Draft
-Version: 0.3
- 
-This document is a subject for future changes.  
-Check description in json schema.  
+Version: 0.4
 
+## Changes
+
+**Changes in 0.4**
+Added status "approval_request_rejected"
+Added "testCallback" in Init request
+ 
 ## Errors handling
 
 HTTP code are used to indicate errors
@@ -30,12 +33,20 @@ Anytime you can get current status (status).
 
  There are following statuses: 
  - waiting_recipient_approval
+ - approval_request_rejected
  - ready_to_commit
  - waiting_security_approval
  - candidate_not_approved
  - candidate_approved
  - unknown
  - test  (in future we could check callback address during init call, so this status will come to callback)
+
+## Status flows
+
+- waiting_recipient_approval > approval_request_rejected  
+- waiting_recipient_approval > ready_to_commit > candidate_approved  
+- waiting_recipient_approval > ready_to_commit > waiting_security_approval > candidate_approved  
+- waiting_recipient_approval > ready_to_commit > waiting_security_approval > candidate_not_approved
 
 ## Init method
 Initializes a background check. If success - server responds with 200 HTTP Code.
@@ -62,7 +73,8 @@ PAYLOAD (json)
        "key": "value" 
 }, 
 "testMode": false, 
-"testVerificationPersonalNr": "XXXXXXXX-XXXX" 
+"testVerificationPersonalNr": "XXXXXXXX-XXXX",
+"testCallback": false
 } 
 ```
 
@@ -122,6 +134,10 @@ PAYLOAD SCHEMA (json schema)
     "testMode": {  
       "type": "boolean" ,
       "description": "testMode is used during development. test mode provides following features: validate if personalId has test person ID (19101010-1010), does not register billable action on customer account, allow to use testVerificationPersonalNr"
+    },  
+     "testCallback": {  
+      "type": "boolean" ,
+      "description": "Our server makes test request to callback address during Init call. Default is false.  testCallback is true and callback url does not anwer with HTTP code 200 you get exception during Init."
     },  
     "testVerificationPersonalNr": {  
       "type": "string" , 
