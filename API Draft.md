@@ -4,6 +4,9 @@ Version: 0.4
 
 ## Changes
 
+**Changes in 0.5**  
+Status response in documentation is synchronized with actual implementation
+
 **Changes in 0.4**  
 Added status "approval_request_rejected"  
 Added "testCallback" in Init request
@@ -186,11 +189,9 @@ PAYLOAD (json)
 ```javascript
 { 
     "requestId": "REQUEST_ID", 
-    "requestCreatedAt": "2018-11-13T20:20:39+00:00", // date when init was called 
-    "statusChangeAt": "2018-11-13T20:20:39+00:00", // date when init was called 
-    "candidateResponseAt": "2018-11-13T20:20:39+00:00", // date when candidate responded to approval request 
+    "requestCreatedAt": "2022-02-18 12:51:20", // date when init was called 
+    "candidateResponseAt": "2022-02-18 12:51:20", // date when candidate responded to approval request 
     "status": "waiting_recipient_approval|waiting_security_approval| candidate_not_approved | candidate_approved |test", 
-    "displayString": "String in swedish"
 } 
 ```
 
@@ -206,27 +207,19 @@ PAYLOAD SCHEMA (json schema)
     "requestCreatedAt": {
       "type": "date-time"
     },
-    "statusChangeAt": {
-      "type": "date-time"
-    },
     "candidateResponseAt": {
       "type": "date-time"
     },
     "status": {
       "type": "string",
       "enum": ["waiting_recipient_approval","waiting_security_approval","candidate_not_approved","candidate_approved","test"]
-    },
-    "displayString": {
-      "type": "string" 
-     
-    }
+    }   
   },
   "required": [
     "requestId",
     "requestCreatedAt",
     "candidateResponseAt",
     "status",
-    "displayString"
   ]
 }
 ```
