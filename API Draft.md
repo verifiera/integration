@@ -1,6 +1,6 @@
 
-# API Draft
-Version: 0.4
+# Integration API
+Version: 0.5 Beta
 
 ## Changes
 
