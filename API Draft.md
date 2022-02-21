@@ -192,6 +192,7 @@ PAYLOAD (json)
     "requestCreatedAt": "2022-02-18 12:51:20", // date when init was called 
     "candidateResponseAt": "2022-02-18 12:51:20", // date when candidate responded to approval request 
     "status": "waiting_recipient_approval|waiting_security_approval| candidate_not_approved | candidate_approved |test", 
+    "displayString": "Godk\u00e4nd"
 } 
 ```
 
@@ -207,13 +208,20 @@ PAYLOAD SCHEMA (json schema)
     "requestCreatedAt": {
       "type": "date-time"
     },
+    "statusChangeAt": {
+      "type": "date-time"
+    },
     "candidateResponseAt": {
       "type": "date-time"
     },
     "status": {
       "type": "string",
       "enum": ["waiting_recipient_approval","waiting_security_approval","candidate_not_approved","candidate_approved","test"]
-    }   
+    },
+    "displayString": {
+      "type": "string" 
+     
+    }
   },
   "required": [
     "requestId",
