@@ -191,7 +191,7 @@ PAYLOAD (json)
     "requestId": "REQUEST_ID", 
     "requestCreatedAt": "2022-02-18 12:51:20", // date when init was called 
     "candidateResponseAt": "2022-02-18 12:51:20", // date when candidate responded to approval request 
-    "status": "waiting_recipient_approval|waiting_security_approval| candidate_not_approved | candidate_approved |test", 
+    "status": "candidate_approved", 
     "displayString": "Godk\u00e4nd"
 } 
 ```
@@ -216,7 +216,7 @@ PAYLOAD SCHEMA (json schema)
     },
     "status": {
       "type": "string",
-      "enum": ["waiting_recipient_approval","waiting_security_approval","candidate_not_approved","candidate_approved","test"]
+      "enum": ["approval_request_rejected", "waiting_recipient_approval","waiting_security_approval","candidate_not_approved","candidate_approved","test"]
     },
     "displayString": {
       "type": "string" 
