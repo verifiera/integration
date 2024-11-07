@@ -6,7 +6,7 @@ Authentication: Bearer TOKEN
 ```
 
 **Params**  
-dry-run – required, false or true. Use dry-run=true to view changes before applying them. You can see if the request was executed by reading the executed value in the response.
+dry-run – required, false or true. Use dry-run=true to view changes before applying them. You can see if the request was executed by reading the "executed" value in the response.
 
 **Example of request body:**   
 ```raw
