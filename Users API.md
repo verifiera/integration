@@ -62,3 +62,7 @@ The following permissions are accepted.
         'A'   => Analyssmall,
         'AI'  => Analyssmallinställningar
 ```
+
+## Additional info
+API following general logic from [Verifiera API](https://verifiera.se/docs/api), for example, Errors handling.  
+API also can return responses in XML format; info is provided in general API docs.
