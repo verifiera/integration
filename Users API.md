@@ -43,10 +43,10 @@ Example of response
 
 ## Description
 ### Users
-Put a list of usernames delimited with a new line in the request body. You need to send all users in the request; users absent from the list will be marked as deleted. 
+The request body should contain a list of usernames delimited with a new line. You must include all users in the request; users absent from the list will be marked as deleted. 
 However, returning them to the list will restore deleted users without any loss.   
 ### Permissions
-Additionally, you can add permissions that need to be applied to use the user after the “;” delimiter. 
+Additionally, you can add permissions that need to be applied to the user by putting them after the “;” delimiter. 
 If permissions are absent, default account permission will be used. 
 
 The following permissions are accepted.
